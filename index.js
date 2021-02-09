@@ -1,10 +1,9 @@
 
-'use strict';
 const data_container = document.getElementById('foods');
 const searchBtn = document.getElementById('searchBtn');
 const warning = document.getElementById('warning');
 
-// Search Btn Click Function
+
 searchBtn.addEventListener('click', function () {
     const keyword = document.getElementById('keyword').value;
     data_container.innerHTML = '';
@@ -15,7 +14,7 @@ searchBtn.addEventListener('click', function () {
         warning.style.display = 'none';
     }
 });
-// Details for Foods
+
 const displayDetails = name => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`;
     fetch(url)
@@ -25,15 +24,15 @@ const displayDetails = name => {
             console.log(data.meals[0]);
         });
 };
-// Render Single Food Info
+
 const renderFoodInfo = (food) => {
-    // Get all ingredients from the object. Up to 20
+    
     const ingredients = [];
     for (let i = 1; i <= 20; i++) {
         if (food[`strIngredient${i}`]) {
             ingredients.push(`${food[`strIngredient${i}`]} - ${food[`strMeasure${i}`]}`);
         } else {
-            // Stop if there are no more ingredients
+            
             break;
         }
     }
@@ -48,9 +47,8 @@ const renderFoodInfo = (food) => {
     </ul>
 `;
 };
-// Foods Loop
+
 function getFood(mealId) {
-    //const mainApi = `https://www.themealdb.com/api/json/v1/1/search.php?s=${keyword.value}`;
     const mainApi = `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealId}`;
 
     fetch(mainApi)
